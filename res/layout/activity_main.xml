@@ -13,6 +13,7 @@
    
     <include layout="@layout/ui_bulb" />
     <include layout="@layout/ui_colorlight"/>
+    <include layout="@layout/ui_policelight"/>
 
     <ImageView
         android:id="@+id/imageview_controller"

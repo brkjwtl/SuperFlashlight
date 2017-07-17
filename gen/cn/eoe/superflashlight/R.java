@@ -47,22 +47,24 @@ public final class R {
         public static final int warning_light_on=0x7f020017;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000f;
+        public static final int action_settings=0x7f080011;
         public static final int editext_morse_code=0x7f08000b;
         public static final int framelayout_bulb=0x7f080001;
         public static final int framelayout_color_light=0x7f080004;
         public static final int framelayout_flashlight=0x7f080006;
+        public static final int framelayout_police_light=0x7f08000c;
         public static final int imageview_bulb=0x7f080002;
         public static final int imageview_controller=0x7f080000;
         public static final int imageview_flashlight=0x7f080007;
         public static final int imageview_flashlight_controller=0x7f080008;
-        public static final int imageview_warning_light1=0x7f08000d;
-        public static final int imageview_warning_light2=0x7f08000e;
+        public static final int imageview_warning_light1=0x7f08000f;
+        public static final int imageview_warning_light2=0x7f080010;
         public static final int linearlayout_main=0x7f080009;
         public static final int linearlayout_morse=0x7f08000a;
-        public static final int linearlayout_warning_light=0x7f08000c;
+        public static final int linearlayout_warning_light=0x7f08000e;
         public static final int textview_hide_bulb=0x7f080003;
         public static final int textview_hide_color_light=0x7f080005;
+        public static final int textview_hide_police_light=0x7f08000d;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -71,7 +73,8 @@ public final class R {
         public static final int ui_flashlight=0x7f030003;
         public static final int ui_main=0x7f030004;
         public static final int ui_morse=0x7f030005;
-        public static final int ui_warning_light=0x7f030006;
+        public static final int ui_policelight=0x7f030006;
+        public static final int ui_warning_light=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f070000;

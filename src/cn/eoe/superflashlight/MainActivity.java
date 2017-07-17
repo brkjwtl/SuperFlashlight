@@ -3,7 +3,7 @@ package cn.eoe.superflashlight;
 import android.graphics.Color;
 import android.view.View;
 
-public class MainActivity extends ColorLight {
+public class MainActivity extends PoliceLight {
 
 	public void onClick_ToFlashlight(View view) {
 		hideAllUI();
@@ -50,7 +50,16 @@ public class MainActivity extends ColorLight {
 				255 - Color.green(mCurrentColorLight),
 				255 - Color.blue(mCurrentColorLight)));
 	}
-
+    public void onClick_ToPolice(View view)
+    {
+    	hideAllUI();
+    	mUIPoliceLight.setVisibility(View.VISIBLE);
+    	screenBrightness(1f);
+    	mLastUIType = UIType.UI_TYPE_POLICE;
+    	mCurrentUIType = mLastUIType;
+    	mHideTextviewPoliceLight.hide();
+    	new PoliceThread().start();
+    }
 	public void onClick_Controller(View view) {
 		hideAllUI();
 		if (mCurrentUIType != UIType.UI_TYPE_MAIN) {
@@ -61,6 +70,7 @@ public class MainActivity extends ColorLight {
 			if (mBulbCrossFadeFlag)
 				mDrawable.reverseTransition(0);
 			mBulbCrossFadeFlag = false;
+			mPoliceState = false;
 
 		} else {
 			switch (mLastUIType) {
@@ -81,6 +91,11 @@ public class MainActivity extends ColorLight {
 			case UI_TYPE_BLUB:
 				mUIBulb.setVisibility(View.VISIBLE);
 				mCurrentUIType = UIType.UI_TYPE_BLUB;
+				break;
+			case UI_TYPE_POLICE:
+				mUIPoliceLight.setVisibility(View.VISIBLE);
+				mCurrentUIType = UIType.UI_TYPE_POLICE;
+				new PoliceThread().start();
 				break;
 			default:
 				break;

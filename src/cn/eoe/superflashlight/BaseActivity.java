@@ -5,12 +5,14 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 public class BaseActivity extends Activity {
 	protected enum UIType {
@@ -34,11 +36,14 @@ public class BaseActivity extends Activity {
 	protected LinearLayout mUIMorse;
 	protected FrameLayout mUIBulb;
 	protected FrameLayout mUIColorLight;
+	protected FrameLayout mUIPoliceLight;
 
 	protected UIType mCurrentUIType = UIType.UI_TYPE_FLASHLIGHT;
 	protected UIType mLastUIType = UIType.UI_TYPE_FLASHLIGHT;
 
 	protected int mDefaultScreenBrightness;
+	
+	protected int mFinishCount = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,8 @@ public class BaseActivity extends Activity {
 		mUIMorse = (LinearLayout)findViewById(R.id.linearlayout_morse);
 		mUIBulb = (FrameLayout)findViewById(R.id.framelayout_bulb);
 		mUIColorLight = (FrameLayout)findViewById(R.id.framelayout_color_light);
+		mUIPoliceLight = (FrameLayout)findViewById(R.id.framelayout_police_light);
+		
 		mImageViewFlashlight = (ImageView) findViewById(R.id.imageview_flashlight);
 		mImageViewFlashlightController = (ImageView) findViewById(R.id.imageview_flashlight_controller);
 		mImageViewWarningLight1 = (ImageView) findViewById(R.id.imageview_warning_light1);
@@ -67,6 +74,7 @@ public class BaseActivity extends Activity {
 		mUIMorse.setVisibility(View.GONE);
 		mUIBulb.setVisibility(View.GONE);
 		mUIColorLight.setVisibility(View.GONE);
+		mUIPoliceLight.setVisibility(View.GONE);
 	}
 
 	protected void screenBrightness(float value) {
@@ -90,5 +98,25 @@ public class BaseActivity extends Activity {
 		}
 		return value;
 
+	}
+	
+	@Override
+	public boolean dispatchTouchEvent(MotionEvent ev) {
+		mFinishCount=0;
+		return super.dispatchTouchEvent(ev);
+	}
+    
+	@Override
+	public void finish()
+	{
+		mFinishCount++;
+		if(mFinishCount == 1)
+		{
+			Toast.makeText(this, "再按一次退出！", Toast.LENGTH_LONG).show();
+		}
+		else if(mFinishCount == 2)
+		{
+			super.finish();
+		}
 	}
 }
