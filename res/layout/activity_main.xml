@@ -12,6 +12,7 @@
     <include layout="@layout/ui_morse" />
 
     <include layout="@layout/ui_bulb" />
+    <include layout="@layout/ui_colorlight"/>
 
     <ImageView
         android:id="@+id/imageview_controller"

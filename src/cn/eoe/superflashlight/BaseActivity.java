@@ -33,6 +33,7 @@ public class BaseActivity extends Activity {
 	protected LinearLayout mUIWarningLight;
 	protected LinearLayout mUIMorse;
 	protected FrameLayout mUIBulb;
+	protected FrameLayout mUIColorLight;
 
 	protected UIType mCurrentUIType = UIType.UI_TYPE_FLASHLIGHT;
 	protected UIType mLastUIType = UIType.UI_TYPE_FLASHLIGHT;
@@ -48,6 +49,7 @@ public class BaseActivity extends Activity {
 		mUIWarningLight = (LinearLayout) findViewById(R.id.linearlayout_warning_light);
 		mUIMorse = (LinearLayout)findViewById(R.id.linearlayout_morse);
 		mUIBulb = (FrameLayout)findViewById(R.id.framelayout_bulb);
+		mUIColorLight = (FrameLayout)findViewById(R.id.framelayout_color_light);
 		mImageViewFlashlight = (ImageView) findViewById(R.id.imageview_flashlight);
 		mImageViewFlashlightController = (ImageView) findViewById(R.id.imageview_flashlight_controller);
 		mImageViewWarningLight1 = (ImageView) findViewById(R.id.imageview_warning_light1);
@@ -64,6 +66,7 @@ public class BaseActivity extends Activity {
 		mUIWarningLight.setVisibility(View.GONE);
 		mUIMorse.setVisibility(View.GONE);
 		mUIBulb.setVisibility(View.GONE);
+		mUIColorLight.setVisibility(View.GONE);
 	}
 
 	protected void screenBrightness(float value) {

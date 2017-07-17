@@ -3,7 +3,7 @@ package cn.eoe.superflashlight;
 import android.graphics.Color;
 import android.view.View;
 
-public class MainActivity extends Bulb {
+public class MainActivity extends ColorLight {
 
 	public void onClick_ToFlashlight(View view) {
 		hideAllUI();
@@ -27,16 +27,30 @@ public class MainActivity extends Bulb {
 		mLastUIType = UIType.UI_TYPE_MORSE;
 		mCurrentUIType = mLastUIType;
 	}
-    public void onClick_ToBulb(View view)
-    {
-    	hideAllUI();
-    	mUIBulb.setVisibility(View.VISIBLE);
-    	
-    	mHideTextViewBulb.hide();
-    	mHideTextViewBulb.setTextColor(Color.BLACK);
-    	mLastUIType = UIType.UI_TYPE_BLUB;
-    	mCurrentUIType = mLastUIType;
-    }
+
+	public void onClick_ToBulb(View view) {
+		hideAllUI();
+		mUIBulb.setVisibility(View.VISIBLE);
+
+		mHideTextViewBulb.hide();
+		mHideTextViewBulb.setTextColor(Color.BLACK);
+		mLastUIType = UIType.UI_TYPE_BLUB;
+		mCurrentUIType = mLastUIType;
+	}
+
+	public void onClick_ToColor(View view) {
+		hideAllUI();
+		mUIColorLight.setVisibility(View.VISIBLE);
+		screenBrightness(1f);
+		mLastUIType = UIType.UI_TYPE_COLOR;
+		mCurrentUIType = mLastUIType;
+
+		mHideTextViewColorLight.setTextColor(Color.rgb(
+				255 - Color.red(mCurrentColorLight),
+				255 - Color.green(mCurrentColorLight),
+				255 - Color.blue(mCurrentColorLight)));
+	}
+
 	public void onClick_Controller(View view) {
 		hideAllUI();
 		if (mCurrentUIType != UIType.UI_TYPE_MAIN) {
@@ -44,10 +58,10 @@ public class MainActivity extends Bulb {
 			mCurrentUIType = UIType.UI_TYPE_MAIN;
 			mWarningLightFlicker = false;
 			screenBrightness(mDefaultScreenBrightness / 255f);
-			if(mBulbCrossFadeFlag)
+			if (mBulbCrossFadeFlag)
 				mDrawable.reverseTransition(0);
 			mBulbCrossFadeFlag = false;
-			
+
 		} else {
 			switch (mLastUIType) {
 			case UI_TYPE_FLASHLIGHT:
