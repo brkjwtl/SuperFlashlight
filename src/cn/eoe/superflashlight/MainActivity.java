@@ -2,20 +2,16 @@ package cn.eoe.superflashlight;
 
 import android.view.View;
 
-public class MainActivity extends WarningLight {
+public class MainActivity extends Morse {
 
-	
-	
-	public void onClick_ToFlashlight(View view)
-	{
+	public void onClick_ToFlashlight(View view) {
 		hideAllUI();
 		mUIFlashlight.setVisibility(View.VISIBLE);
 		mLastUIType = UIType.UI_TYPE_FLASHLIGHT;
 		mCurrentUIType = UIType.UI_TYPE_FLASHLIGHT;
 	}
-	
-	public void onClick_ToWarningLight(View view)
-	{
+
+	public void onClick_ToWarningLight(View view) {
 		hideAllUI();
 		mUIWarningLight.setVisibility(View.VISIBLE);
 		mLastUIType = UIType.UI_TYPE_WARNINGLIGHT;
@@ -23,6 +19,15 @@ public class MainActivity extends WarningLight {
 		screenBrightness(1f);
 		new WarningLightThread().start();
 	}
+	
+	public void onClick_ToMorse(View view)
+	{
+		hideAllUI();
+		mUIMorse.setVisibility(View.VISIBLE);
+		mLastUIType = UIType.UI_TYPE_MORSE;
+		mCurrentUIType = mLastUIType;
+	}
+
 	public void onClick_Controller(View view) {
 		hideAllUI();
 		if (mCurrentUIType != UIType.UI_TYPE_MAIN) {
@@ -40,7 +45,11 @@ public class MainActivity extends WarningLight {
 			case UI_TYPE_WARNINGLIGHT:
 				mUIWarningLight.setVisibility(View.VISIBLE);
 				mCurrentUIType = UIType.UI_TYPE_WARNINGLIGHT;
-				new WarningLightThread().start();
+				new WarningLightThread().start(); 
+				break;
+			case UI_TYPE_MORSE:
+				mUIMorse.setVisibility(View.VISIBLE);
+				mCurrentUIType = UIType.UI_TYPE_MORSE;
 				break;
 			default:
 				break;

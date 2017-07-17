@@ -5,7 +5,9 @@
 
     <include layout="@layout/ui_flashlight" />
     <include layout="@layout/ui_main" />
-    <include layout="@layout/ui_warnng_light" />
+    <include layout="@layout/ui_warning_light" />
+    <include layout="@layout/ui_morse"/>  
+
     <ImageView
         android:id="@+id/imageview_controller"
         android:layout_width="48dp"

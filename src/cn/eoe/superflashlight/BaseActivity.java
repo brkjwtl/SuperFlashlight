@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,12 +21,15 @@ public class BaseActivity extends Activity {
 	protected ImageView mImageViewFlashlightController;
 	protected ImageView mImageViewWarningLight1;
 	protected ImageView mImageViewWarningLight2;
+	protected EditText mEditTextMorseCode;
+	
 	protected Camera mCamera;
 	protected Parameters mParameters;
 
 	protected FrameLayout mUIFlashlight;
 	protected LinearLayout mUIMain;
 	protected LinearLayout mUIWarningLight;
+	protected LinearLayout mUIMorse;
 
 	protected UIType mCurrentUIType = UIType.UI_TYPE_FLASHLIGHT;
 	protected UIType mLastUIType = UIType.UI_TYPE_FLASHLIGHT;
@@ -39,11 +43,12 @@ public class BaseActivity extends Activity {
 		mUIFlashlight = (FrameLayout) findViewById(R.id.framelayout_flashlight);
 		mUIMain = (LinearLayout) findViewById(R.id.linearlayout_main);
 		mUIWarningLight = (LinearLayout) findViewById(R.id.linearlayout_warning_light);
+		mUIMorse = (LinearLayout)findViewById(R.id.linearlayout_morse);
 		mImageViewFlashlight = (ImageView) findViewById(R.id.imageview_flashlight);
 		mImageViewFlashlightController = (ImageView) findViewById(R.id.imageview_flashlight_controller);
 		mImageViewWarningLight1 = (ImageView) findViewById(R.id.imageview_warning_light1);
 		mImageViewWarningLight2 = (ImageView) findViewById(R.id.imageview_warning_light2);
-		
+		mEditTextMorseCode = (EditText)findViewById(R.id.editext_morse_code);
 		mDefaultScreenBrightness  = getScreenBrightness();
 
 	}
@@ -52,6 +57,7 @@ public class BaseActivity extends Activity {
 		mUIMain.setVisibility(View.GONE);
 		mUIFlashlight.setVisibility(View.GONE);
 		mUIWarningLight.setVisibility(View.GONE);
+		mUIMorse.setVisibility(View.GONE);
 	}
 
 	protected void screenBrightness(float value) {
