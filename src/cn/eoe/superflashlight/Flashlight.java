@@ -17,7 +17,7 @@ public class Flashlight extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		mImageViewFlashlight.setTag(false);
 		Point point = new Point();
-
+ 
 		getWindowManager().getDefaultDisplay().getSize(point);
 
 		LayoutParams laParams = (LayoutParams) mImageViewFlashlightController
