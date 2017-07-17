@@ -4,9 +4,14 @@
     android:background="@drawable/bg" >
 
     <include layout="@layout/ui_flashlight" />
+
     <include layout="@layout/ui_main" />
+
     <include layout="@layout/ui_warning_light" />
-    <include layout="@layout/ui_morse"/>  
+
+    <include layout="@layout/ui_morse" />
+
+    <include layout="@layout/ui_bulb" />
 
     <ImageView
         android:id="@+id/imageview_controller"
@@ -17,4 +22,5 @@
         android:layout_marginTop="10dp"
         android:onClick="onClick_Controller"
         android:src="@drawable/controller" />
+
 </FrameLayout>
