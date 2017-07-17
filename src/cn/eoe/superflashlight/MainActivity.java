@@ -1,9 +1,10 @@
 package cn.eoe.superflashlight;
 
 import android.graphics.Color;
+import android.provider.MediaStore.Video;
 import android.view.View;
 
-public class MainActivity extends PoliceLight {
+public class MainActivity extends Settings {
 
 	public void onClick_ToFlashlight(View view) {
 		hideAllUI();
@@ -50,16 +51,25 @@ public class MainActivity extends PoliceLight {
 				255 - Color.green(mCurrentColorLight),
 				255 - Color.blue(mCurrentColorLight)));
 	}
-    public void onClick_ToPolice(View view)
-    {
-    	hideAllUI();
-    	mUIPoliceLight.setVisibility(View.VISIBLE);
-    	screenBrightness(1f);
-    	mLastUIType = UIType.UI_TYPE_POLICE;
-    	mCurrentUIType = mLastUIType;
-    	mHideTextviewPoliceLight.hide();
-    	new PoliceThread().start();
-    }
+
+	public void onClick_ToPolice(View view) {
+		hideAllUI();
+		mUIPoliceLight.setVisibility(View.VISIBLE);
+		screenBrightness(1f);
+		mLastUIType = UIType.UI_TYPE_POLICE;
+		mCurrentUIType = mLastUIType;
+		mHideTextviewPoliceLight.hide();
+		new PoliceThread().start();
+	}
+
+	public void onClick_ToSettings(View view) {
+		hideAllUI();
+		mUISettings.setVisibility(View.VISIBLE);
+		mLastUIType = UIType.UI_TYPE_SETTINGS;
+		mCurrentUIType = mLastUIType;
+
+	}
+
 	public void onClick_Controller(View view) {
 		hideAllUI();
 		if (mCurrentUIType != UIType.UI_TYPE_MAIN) {
@@ -71,6 +81,13 @@ public class MainActivity extends PoliceLight {
 				mDrawable.reverseTransition(0);
 			mBulbCrossFadeFlag = false;
 			mPoliceState = false;
+
+			mSharedPreferences
+					.edit()
+					.putInt("warning_light_interval",
+							mCurrentWarningLightInterval)
+					.putInt("police_light_interval",
+							mCurrentPoliceLightInterval).commit();
 
 		} else {
 			switch (mLastUIType) {
@@ -96,6 +113,10 @@ public class MainActivity extends PoliceLight {
 				mUIPoliceLight.setVisibility(View.VISIBLE);
 				mCurrentUIType = UIType.UI_TYPE_POLICE;
 				new PoliceThread().start();
+				break;
+			case UI_TYPE_SETTINGS:
+				mUISettings.setVisibility(View.VISIBLE);
+				mCurrentUIType = UIType.UI_TYPE_SETTINGS;
 				break;
 			default:
 				break;
